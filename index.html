@@ -1,0 +1,325 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lato',sans-serif;background:#0D0A1A;color:#E8E0D5;min-height:100vh}
+.app{max-width:900px;margin:0 auto;padding:0 0 3rem}
+
+/* NAV */
+nav{background:#0D0A1A;border-bottom:1px solid #2A1F4A;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Cinzel',serif;font-size:1.3rem;color:#C9A227;letter-spacing:2px}
+.logo span{color:#9B59E8;font-size:.8rem;display:block;letter-spacing:4px;font-weight:400}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-link{color:#B8A9C9;font-size:.85rem;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-link:hover{color:#C9A227}
+.cart-btn{background:linear-gradient(135deg,#7B2FBE,#4A1870);border:1px solid #9B59E8;color:#E8E0D5;padding:.45rem 1rem;border-radius:6px;cursor:pointer;font-size:.8rem;font-family:'Lato',sans-serif;display:flex;align-items:center;gap:.4rem;transition:all .2s}
+.cart-btn:hover{background:linear-gradient(135deg,#9B59E8,#7B2FBE)}
+.cart-count{background:#C9A227;color:#0D0A1A;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#1A0D35 0%,#0D0A1A 100%);padding:3rem 1.5rem 2rem;text-align:center;border-bottom:1px solid #2A1F4A;position:relative;overflow:hidden}
+.rune-bg{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.04;font-size:4rem;color:#C9A227;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;pointer-events:none;line-height:1}
+.hero-badge{display:inline-block;background:#1A0D35;border:1px solid #C9A227;color:#C9A227;font-size:.7rem;letter-spacing:3px;padding:.3rem .8rem;border-radius:2px;margin-bottom:1rem;text-transform:uppercase}
+.hero h1{font-family:'Cinzel',serif;font-size:2.8rem;color:#E8E0D5;line-height:1.1;margin-bottom:.5rem}
+.hero h1 span{color:#C9A227}
+.hero p{color:#9B8FBE;font-size:1rem;max-width:500px;margin:0 auto 1.5rem;line-height:1.7}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:'Cinzel',serif;font-size:1.4rem;color:#C9A227}
+.stat-l{font-size:.72rem;color:#7B6E8E;text-transform:uppercase;letter-spacing:2px}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid #2A1F4A;padding:0 1.5rem;background:#0D0A1A;position:sticky;top:65px;z-index:90}
+.tab{padding:.85rem 1.2rem;font-size:.82rem;text-transform:uppercase;letter-spacing:2px;color:#7B6E8E;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:'Lato',sans-serif}
+.tab.active{color:#C9A227;border-bottom-color:#C9A227}
+.tab:hover{color:#E8E0D5}
+
+/* SECTIONS */
+.section{padding:1.5rem}
+.hidden{display:none}
+
+/* PRODUCTOS */
+.section-title{font-family:'Cinzel',serif;font-size:1.1rem;color:#C9A227;margin-bottom:1.2rem;letter-spacing:1px;display:flex;align-items:center;gap:.5rem}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#2A1F4A,transparent)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.product-card{background:#110D24;border:1px solid #2A1F4A;border-radius:10px;overflow:hidden;transition:all .25s;cursor:pointer}
+.product-card:hover{border-color:#7B2FBE;transform:translateY(-2px)}
+.product-img{width:100%;height:130px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:#1A1035}
+.product-body{padding:.85rem}
+.product-cat{font-size:.65rem;color:#7B2FBE;text-transform:uppercase;letter-spacing:2px;margin-bottom:.3rem}
+.product-name{font-family:'Cinzel',serif;font-size:.88rem;color:#E8E0D5;margin-bottom:.25rem;line-height:1.3}
+.product-rarity{display:inline-block;padding:.2rem .5rem;border-radius:3px;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
+.rarity-legendario{background:#2A1500;color:#FFB300;border:1px solid #FFB300}
+.rarity-epico{background:#1A0A2E;color:#CC44FF;border:1px solid #CC44FF}
+.rarity-raro{background:#0A1A2E;color:#4499FF;border:1px solid #4499FF}
+.rarity-comun{background:#1A1A1A;color:#aaa;border:1px solid #555}
+.product-price{font-family:'Cinzel',serif;font-size:1rem;color:#C9A227;margin-bottom:.6rem}
+.product-price small{font-size:.7rem;color:#7B6E8E;font-family:'Lato',sans-serif}
+.add-btn{width:100%;background:transparent;border:1px solid #7B2FBE;color:#B580E8;padding:.4rem;border-radius:5px;cursor:pointer;font-size:.78rem;font-family:'Lato',sans-serif;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
+.add-btn:hover{background:#7B2FBE;color:#fff}
+.stock-badge{font-size:.65rem;color:#7B6E8E;margin-bottom:.4rem}
+.stock-badge.low{color:#FF6B4A}
+
+/* REGISTRO */
+.registro-wrap{max-width:680px}
+.reg-intro{background:#110D24;border:1px solid #2A1F4A;border-left:3px solid #C9A227;border-radius:8px;padding:1rem 1.2rem;margin-bottom:1.5rem}
+.reg-intro p{font-size:.85rem;color:#9B8FBE;line-height:1.7}
+.reg-intro strong{color:#C9A227}
+.table-wrap{overflow-x:auto;border-radius:8px;border:1px solid #2A1F4A}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+thead{background:#1A1035}
+th{padding:.75rem 1rem;text-align:left;font-family:'Cinzel',serif;font-size:.75rem;color:#C9A227;letter-spacing:1px;border-bottom:1px solid #2A1F4A;white-space:nowrap}
+td{padding:.7rem 1rem;border-bottom:1px solid #16102A;vertical-align:top;color:#B8A9C9}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#130F25}
+.field-name{color:#E8E0D5;font-weight:700;font-family:'Cinzel',serif;font-size:.78rem}
+.tipo{background:#1A1035;color:#9B59E8;border:1px solid #3A2560;padding:.18rem .5rem;border-radius:4px;font-size:.72rem;white-space:nowrap}
+.key-badge{background:#2A1500;color:#C9A227;border:1px solid #C9A227;padding:.18rem .55rem;border-radius:4px;font-size:.7rem;font-weight:700;display:inline-flex;align-items:center;gap:.3rem}
+
+/* CLAVE BOX */
+.clave-box{background:#110D24;border:1px solid #C9A227;border-radius:10px;padding:1.2rem;margin-top:1.5rem}
+.clave-box h3{font-family:'Cinzel',serif;color:#C9A227;font-size:.95rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.clave-box p{font-size:.83rem;color:#9B8FBE;line-height:1.7}
+.clave-box p strong{color:#E8E0D5}
+
+/* CARRITO */
+.cart-empty{text-align:center;padding:3rem;color:#7B6E8E}
+.cart-empty-icon{font-size:3rem;margin-bottom:1rem}
+.cart-item{background:#110D24;border:1px solid #2A1F4A;border-radius:8px;padding:.85rem 1rem;display:flex;align-items:center;gap:1rem;margin-bottom:.6rem}
+.cart-item-icon{font-size:2rem;width:48px;text-align:center}
+.cart-item-info{flex:1}
+.cart-item-name{font-family:'Cinzel',serif;font-size:.85rem;color:#E8E0D5;margin-bottom:.2rem}
+.cart-item-cat{font-size:.72rem;color:#7B2FBE}
+.cart-item-price{font-family:'Cinzel',serif;color:#C9A227;font-size:.95rem;white-space:nowrap}
+.remove-btn{background:transparent;border:none;color:#4A3A5A;cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;transition:color .2s}
+.remove-btn:hover{color:#FF6B4A}
+.cart-total{background:#1A1035;border:1px solid #C9A227;border-radius:8px;padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+.cart-total-label{font-family:'Cinzel',serif;color:#9B8FBE;font-size:.85rem}
+.cart-total-amount{font-family:'Cinzel',serif;color:#C9A227;font-size:1.4rem}
+.checkout-btn{width:100%;margin-top:.85rem;background:linear-gradient(135deg,#C9A227,#8B6B10);border:none;color:#0D0A1A;padding:.75rem;border-radius:8px;font-family:'Cinzel',serif;font-size:.9rem;cursor:pointer;letter-spacing:2px;transition:opacity .2s}
+.checkout-btn:hover{opacity:.85}
+
+/* IA */
+.ia-chat{background:#110D24;border:1px solid #2A1F4A;border-radius:10px;overflow:hidden}
+.ia-header{background:#1A1035;padding:.85rem 1.2rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid #2A1F4A}
+.ia-dot{width:8px;height:8px;background:#9B59E8;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.ia-title{font-family:'Cinzel',serif;font-size:.85rem;color:#C9A227}
+.ia-subtitle{font-size:.72rem;color:#7B6E8E}
+.ia-messages{padding:1rem;min-height:220px;max-height:320px;overflow-y:auto;display:flex;flex-direction:column;gap:.7rem}
+.msg{max-width:80%;padding:.65rem .9rem;border-radius:8px;font-size:.82rem;line-height:1.6}
+.msg.bot{background:#1A1035;border:1px solid #2A1F4A;color:#B8A9C9;align-self:flex-start}
+.msg.user{background:#7B2FBE;color:#E8E0D5;align-self:flex-end}
+.ia-input-row{display:flex;gap:.5rem;padding:.85rem;border-top:1px solid #2A1F4A}
+.ia-input{flex:1;background:#0D0A1A;border:1px solid #2A1F4A;border-radius:6px;padding:.5rem .75rem;color:#E8E0D5;font-size:.82rem;font-family:'Lato',sans-serif;outline:none;transition:border .2s}
+.ia-input:focus{border-color:#7B2FBE}
+.ia-send{background:#7B2FBE;border:none;color:#E8E0D5;padding:.5rem .9rem;border-radius:6px;cursor:pointer;font-size:.82rem;font-family:'Lato',sans-serif;transition:background .2s;white-space:nowrap}
+.ia-send:hover{background:#9B59E8}
+.ia-send:disabled{opacity:.4;cursor:not-allowed}
+.ia-prompts{padding:0 .85rem .85rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.ia-prompt-btn{background:transparent;border:1px solid #2A1F4A;color:#7B6E8E;padding:.3rem .65rem;border-radius:20px;font-size:.72rem;cursor:pointer;transition:all .2s;font-family:'Lato',sans-serif}
+.ia-prompt-btn:hover{border-color:#7B2FBE;color:#B580E8}
+.typing{display:flex;gap:4px;align-items:center;padding:.4rem .6rem}
+.dot{width:6px;height:6px;background:#7B6E8E;border-radius:50%;animation:bounce .8s infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+</style>
+
+
+<div class="app">
+<nav>
+  <div class="logo">⚔ TuTiendaArcana<span>Arcane Marketplace</span></div>
+  <div class="nav-links">
+    <span class="nav-link" onclick="showTab('catalogo')">Catálogo</span>
+    <span class="nav-link" onclick="showTab('ia')">Oráculo IA</span>
+    <button class="cart-btn" onclick="showTab('carrito')">
+      🛒 Carrito <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="rune-bg" aria-hidden="true">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ</div>
+  <div class="hero-badge">✦ Tienda Arcana Digital ✦</div>
+  <h1>Adquiere tu<br><span>Poder Legendario</span></h1>
+  <p>Armas encantadas, grimorios ancestrales, pociones místicas y artefactos de los reinos más remotos de la fantasía.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">1,247</div><div class="stat-l">Artefactos</div></div>
+    <div class="stat"><div class="stat-n">89</div><div class="stat-l">Legendarios</div></div>
+    <div class="stat"><div class="stat-n">4.9★</div><div class="stat-l">Valoración</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-catalogo" onclick="showTab('catalogo')">Catálogo</div>
+  <div class="tab" id="tab-carrito" onclick="showTab('carrito')">Carrito</div>
+  <div class="tab" id="tab-ia" onclick="showTab('ia')">Oráculo IA</div>
+</div>
+
+<!-- CATÁLOGO -->
+<div class="section" id="sec-catalogo">
+  <div class="section-title">✦ Artefactos Disponibles</div>
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- CARRITO -->
+<div class="section hidden" id="sec-carrito">
+  <div class="section-title">🛒 Tu Carrito Arcano</div>
+  <div id="cartContent"></div>
+</div>
+
+<!-- IA -->
+<div class="section hidden" id="sec-ia">
+  <div class="section-title">🔮 Oráculo IA — Asistente del Fantasy Shop</div>
+  <p style="font-size:.83rem;color:#7B6E8E;margin-bottom:1rem;line-height:1.6">Consulta al Oráculo sobre artefactos, preguntas de diseño de registro o recomendaciones. Impulsado por Claude.</p>
+  <div class="ia-chat">
+    <div class="ia-header">
+      <div class="ia-dot"></div>
+      <div>
+        <div class="ia-title">✦ Oráculo del Fantasy Shop</div>
+        <div class="ia-subtitle">Asistente mágico — Listo para consultas</div>
+      </div>
+    </div>
+    <div class="ia-messages" id="iaMessages">
+      <div class="msg bot">⚔ ¡Bienvenido, aventurero! Soy el Oráculo del Fantasy Shop. Puedo ayudarte a encontrar artefactos, explicar el diseño del registro principal o responder cualquier consulta sobre la tienda. ¿Qué deseas saber?</div>
+    </div>
+    <div class="ia-prompts">
+      <button class="ia-prompt-btn" onclick="sendQuick('¿Qué artefacto legendario me recomiendas?')">¿Qué legendario me recomiendas?</button>
+      <button class="ia-prompt-btn" onclick="sendQuick('¿Por qué ID_Artefacto es la clave del registro?')">¿Por qué ID es la clave?</button>
+      <button class="ia-prompt-btn" onclick="sendQuick('¿Qué categorías de productos hay en la tienda?')">¿Qué categorías hay?</button>
+      <button class="ia-prompt-btn" onclick="sendQuick('¿Qué es la rareza de un artefacto?')">¿Qué es la rareza?</button>
+    </div>
+    <div class="ia-input-row">
+      <input class="ia-input" id="iaInput" placeholder="Escribe tu consulta al Oráculo..." onkeydown="if(event.key==='Enter')sendIA()">
+      <button class="ia-send" id="iaSend" onclick="sendIA()">Consultar ↗</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const PRODUCTS=[
+  {id:1,icon:"⚔️",nombre:"Espada del Dragón Eterno",cat:"Arma",rareza:"Legendario",precio:4250,stock:3,poder:98,reino:"Drakenheim",desc:"Forjada con escama de dragón inmortal"},
+  {id:2,icon:"📖",nombre:"Grimorio de los Astros",cat:"Grimorio",rareza:"Épico",precio:1800,stock:7,poder:85,reino:"Torre Arcana",desc:"Contiene 300 hechizos celestiales"},
+  {id:3,icon:"🧪",nombre:"Poción de Vida Eterna",cat:"Poción",rareza:"Legendario",precio:3600,stock:2,poder:95,reino:"Valle Esmeralda",desc:"Una sola gota sana heridas mortales"},
+  {id:4,icon:"🏹",nombre:"Arco Élfico de Luna",cat:"Arma",rareza:"Épico",precio:2100,stock:5,poder:80,reino:"Bosque de Aethel",desc:"Nunca falla bajo la luna llena"},
+  {id:5,icon:"🛡️",nombre:"Escudo de Mithril Sagrado",cat:"Armadura",rareza:"Raro",precio:950,stock:12,poder:65,reino:"Forjas de Korrath",desc:"Resiste hechizos de nivel 5 o menor"},
+  {id:6,icon:"💎",nombre:"Cristal de Visión Profética",cat:"Artefacto",rareza:"Épico",precio:2700,stock:4,poder:90,reino:"Oráculo de Nymeria",desc:"Muestra posibles futuros al portador"},
+  {id:7,icon:"🧙",nombre:"Bastón del Archimago",cat:"Arma",rareza:"Legendario",precio:5000,stock:1,poder:100,reino:"Academia Celestia",desc:"El bastón más poderoso conocido"},
+  {id:8,icon:"🗺️",nombre:"Mapa de los Reinos Ocultos",cat:"Artefacto",rareza:"Raro",precio:480,stock:20,poder:40,reino:"Gremio de Cartógrafos",desc:"Revela caminos invisibles"},
+  {id:9,icon:"⚗️",nombre:"Poción de Invisibilidad",cat:"Poción",rareza:"Raro",precio:620,stock:15,poder:55,reino:"Alquimista Gris",desc:"Duración: 3 horas de sigilo"},
+  {id:10,icon:"🎭",nombre:"Máscara del Cambiaformas",cat:"Artefacto",rareza:"Épico",precio:1950,stock:6,poder:78,reino:"Reino de las Sombras",desc:"Transforma al portador en cualquier ser"},
+  {id:11,icon:"🪄",nombre:"Varita de Relámpagos",cat:"Arma",rareza:"Raro",precio:750,stock:9,poder:60,reino:"Torre de los Vientos",desc:"Lanza rayos a voluntad del mago"},
+  {id:12,icon:"🧲",nombre:"Amuleto del Destino",cat:"Artefacto",rareza:"Común",precio:190,stock:35,poder:25,reino:"Mercado del Cruce",desc:"Atrae pequeñas fortunas al portador"},
+];
+
+let cart=[];
+
+function rarClass(r){return 'rarity-'+r.toLowerCase().replace('é','e').replace('ó','o');}
+function renderProducts(){
+  const g=document.getElementById('productsGrid');
+  g.innerHTML=PRODUCTS.map(p=>`
+    <div class="product-card">
+      <div class="product-img">${p.icon}</div>
+      <div class="product-body">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.nombre}</div>
+        <div><span class="product-rarity ${rarClass(p.rareza)}">${p.rareza}</span></div>
+        <div class="stock-badge ${p.stock<=3?'low':''}">${p.stock<=3?'⚠ Solo '+p.stock+' en stock':'Stock: '+p.stock}</div>
+        <div class="product-price">${p.precio.toLocaleString()} <small>monedas de oro</small></div>
+        <button class="add-btn" onclick="addToCart(${p.id})">+ Añadir al carrito</button>
+      </div>
+    </div>`).join('');
+}
+
+function addToCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  const ex=cart.find(x=>x.id===id);
+  if(ex){ex.qty++;}else{cart.push({...p,qty:1});}
+  document.getElementById('cartCount').textContent=cart.reduce((a,x)=>a+x.qty,0);
+}
+
+function renderCart(){
+  const div=document.getElementById('cartContent');
+  if(cart.length===0){
+    div.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🪄</div><p>Tu carrito arcano está vacío.<br>¡Explora el catálogo y encuentra tu artefacto!</p></div>';
+    return;
+  }
+  const total=cart.reduce((a,x)=>a+x.precio*x.qty,0);
+  div.innerHTML=cart.map(x=>`
+    <div class="cart-item">
+      <div class="cart-item-icon">${x.icon}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${x.nombre}</div>
+        <div class="cart-item-cat">${x.cat} · ${x.rareza} · x${x.qty}</div>
+      </div>
+      <div class="cart-item-price">${(x.precio*x.qty).toLocaleString()} oro</div>
+      <button class="remove-btn" onclick="removeFromCart(${x.id})" title="Quitar">✕</button>
+    </div>`).join('')+
+    `<div class="cart-total">
+      <span class="cart-total-label">Total del pedido</span>
+      <span class="cart-total-amount">${total.toLocaleString()} 🪙</span>
+    </div>
+    <button class="checkout-btn" onclick="alert('¡Pedido arcano enviado! Llegarás en 3 lunas llenas. ✦')">⚔ Confirmar Pedido ⚔</button>`;
+}
+
+function removeFromCart(id){
+  cart=cart.filter(x=>x.id!==id);
+  document.getElementById('cartCount').textContent=cart.reduce((a,x)=>a+x.qty,0);
+  renderCart();
+}
+
+function showTab(t){
+  ['catalogo','carrito','ia'].forEach(s=>{
+    document.getElementById('sec-'+s).classList.toggle('hidden',s!==t);
+    document.getElementById('tab-'+s).classList.toggle('active',s===t);
+  });
+  if(t==='carrito')renderCart();
+}
+
+const SYS=`Eres el Oráculo del Fantasy Shop, un e-commerce mágico temático de fantasía y gaming. Tienes personalidad mística pero amigable. Ayudas a los usuarios a encontrar artefactos, explicas el diseño del registro principal (campos: ID_Artefacto [clave INT autoincremental], Nombre STRING, Categoria STRING, Rareza STRING, Precio_Oro FLOAT, Stock INT, Poder_Magico INT, Origen_Reino STRING, Descripcion TEXT, Disponible BOOL) y respondes consultas sobre la tienda. Responde en español, de forma concisa y con algo de estilo fantástico. Máx 120 palabras.`;
+
+let iaHistory=[];
+
+async function sendIA(){
+  const inp=document.getElementById('iaInput');
+  const btn=document.getElementById('iaSend');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  addMsg(txt,'user');
+  inp.value='';
+  btn.disabled=true;
+  const typing=document.createElement('div');
+  typing.className='msg bot';
+  typing.innerHTML='<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+  typing.id='typing';
+  document.getElementById('iaMessages').appendChild(typing);
+  scrollIA();
+  iaHistory.push({role:'user',content:txt});
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYS,messages:iaHistory})});
+    const d=await res.json();
+    const reply=d.content.map(c=>c.text||'').join('');
+    iaHistory.push({role:'assistant',content:reply});
+    document.getElementById('typing')?.remove();
+    addMsg(reply,'bot');
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    addMsg('⚠ El Oráculo no pudo responder. Intenta de nuevo.','bot');
+  }
+  btn.disabled=false;
+}
+
+function sendQuick(t){document.getElementById('iaInput').value=t;sendIA();}
+function addMsg(t,r){
+  const d=document.createElement('div');
+  d.className='msg '+r;
+  d.textContent=t;
+  document.getElementById('iaMessages').appendChild(d);
+  scrollIA();
+}
+function scrollIA(){const m=document.getElementById('iaMessages');m.scrollTop=m.scrollHeight;}
+
+renderProducts();
+</script>
